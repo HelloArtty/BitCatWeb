@@ -13,6 +13,10 @@ export default {
       colors: {
         blue: {
           1000 : '#1a202c',
+          1001 : '#2D3648',
+        },
+        slate: {
+          1000 : '#EDF0F7',
         }
       },
     },
