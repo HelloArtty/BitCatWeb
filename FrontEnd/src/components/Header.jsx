@@ -1,8 +1,10 @@
-import React from 'react'
-import { FaSearch } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { FaSearch } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
+    const { currentUser } = useSelector((state) => state.user);
     return (
         <header className='bg-blue-1000' shadow-md>
             <div className='flex justify-between items-center max-w-6xl mx-auto p-4'>
@@ -21,30 +23,35 @@ export default function Header() {
                 </form>
                 <ul className='flex gap-4'>
                     <Link to='/'>
-                    <li className='font-inter ml-3 hidden sm:inline text-slate-100 hover:underline'>
-                        Home
-                    </li>
+                        <li className='font-inter ml-3 hidden sm:inline text-slate-100 hover:underline'>
+                            Home
+                        </li>
                     </Link>
                     <Link to='/about'>
-                    <li className='font-inter  hidden sm:inline text-slate-100 hover:underline'>
-                        About
-                    </li>
+                        <li className='font-inter  hidden sm:inline text-slate-100 hover:underline'>
+                            About
+                        </li>
                     </Link>
                     <Link to='/cats'>
-                    <li className='font-inter  hidden sm:inline text-slate-100 hover:underline'>
-                        Cats
-                    </li>
+                        <li className='font-inter  hidden sm:inline text-slate-100 hover:underline'>
+                            Cats
+                        </li>
                     </Link>
                     <Link to='/how-to-pet'>
-                    <li className='font-inter  hidden sm:inline text-slate-100 hover:underline'>
-                        How to Pet
-                    </li>
+                        <li className='font-inter  hidden sm:inline text-slate-100 hover:underline'>
+                            How to Pet
+                        </li>
                     </Link>
-                    <Link to='signin'>
-                    <li className='font-inter  sm:inline text-slate-100 hover:underline'>
-                        {''}
-                        Sign In
-                    </li>
+                    <Link to='/profile'>
+                        {currentUser ? (
+                            <img
+                                className='rounded-full h-7 w-7 object-cover'
+                                src={currentUser.avatar}
+                                alt='profile'
+                            />
+                        ) : (
+                            <li className=' text-slate-100 hover:underline'> Sign in</li>
+                        )}
                     </Link>
                 </ul>
             </div>
