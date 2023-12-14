@@ -7,13 +7,13 @@ export default function Header() {
     const { currentUser } = useSelector((state) => state.user);
     return (
         <header className='bg-blue-1000' shadow-md>
-            <div className='flex justify-between items-center max-w-6xl mx-auto p-4'>
+            <div className='flex justify-between items-center max-w-8xl mx-auto p-4'>
                 <Link to='/'>
                     <h1 className='font-blod font-inter text-sm sm:text-xl flex flex-wrap'>
-                        <span className='text-white'>BitCat</span>
+                        <span className='text-white text-4xl'>BitCat</span>
                     </h1>
                 </Link>
-                <form className='bg-slate-100 p-3 rounded-xl flex items-center'>
+                <form className='bg-slate-100 ml-5 p-3 rounded-xl flex items-center'>
                     <input
                         type='text'
                         placeholder='Search'
@@ -44,15 +44,22 @@ export default function Header() {
                     </Link>
                     <Link to='/profile'>
                         {currentUser ? (
-                            <img
-                                className='rounded-full h-7 w-7 object-cover'
-                                src={currentUser.avatar}
-                                alt='profile'
-                            />
+                            <span className='text-slate-100 hover:underline'>{currentUser.username}</span>
                         ) : (
-                            <li className=' text-slate-100 hover:underline'> Sign in</li>
+                            <li className='text-slate-100 hover:underline'></li>
                         )}
                     </Link>
+                        <Link to='/profile'>
+                            {currentUser ? (
+                                <img
+                                    className='rounded-full h-7 w-7 object-cover'
+                                    src={currentUser.avatar}
+                                    alt='profile'
+                                />
+                            ) : (
+                                <li className=' text-slate-100 hover:underline'> Sign in</li>
+                            )}
+                        </Link>
                 </ul>
             </div>
         </header>

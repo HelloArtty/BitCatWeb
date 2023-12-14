@@ -1,23 +1,24 @@
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { app } from '../firebase';
+import { signInSuccess } from '../redux/user/userSlice';
 
 export default function OAuth() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     const handleGoogleClick = async () => {
         try {
-            setLoading(true); // Set loading state to true when starting the authentication process
-
+            setLoading(true);
             const provider = new GoogleAuthProvider();
             const auth = getAuth(app);
 
             const result = await signInWithPopup(auth, provider);
 
-            // Send user data to backend for further processing
             const res = await fetch('backend/auth/google', {
                 method: 'POST',
                 headers: {
@@ -31,13 +32,12 @@ export default function OAuth() {
             });
 
             const data = await res.json();
-            setLoading(false); // Set loading state to false after completing the authentication process
-            setError(null); // Reset error state
-            navigate('/'); // Navigate to the home page on successful login
+            dispatch(signInSuccess(data));
+            navigate('/');
         } catch (error) {
             console.error('Could not sign in with Google', error);
-            setLoading(false); // Set loading state to false in case of an error
-            setError('Could not sign in with Google. Please try again.'); // Set error state
+            setLoading(false);
+            setError('Could not sign in with Google. Please try again.');
         }
     };
 
