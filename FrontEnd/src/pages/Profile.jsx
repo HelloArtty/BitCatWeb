@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 export default function Profile() {
+    const fileRef =useRef(null)
     const { currentUser } = useSelector((state) => state.user);
     return (
         <div className="p-3 max-w-lg mx-auto">
@@ -9,6 +10,7 @@ export default function Profile() {
                 Profile
             </h1>
             <form className='flex flex-col gap-4'>
+                <input type="file" ref={fileRef} />
                 <img src={currentUser.avatar} alt="profile"
                     className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' />
                 <input type="text" placeholder='username' id='username'
