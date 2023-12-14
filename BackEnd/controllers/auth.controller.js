@@ -22,9 +22,10 @@ export const signup = async (req, res, next) => {
             }
             return res.status(400).json({ success: false, message: `${duplicateField} is already taken.` });
         }
+        next(error);
     }
-    next(error);
 };
+
 
 export const signin = async (req, res, next) => {
     const { username, password } = req.body;
