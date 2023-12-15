@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import authRouter from './routes/auth.route.js';
+import postRouter from './routes/post.route.js';
 import userRouter from './routes/user.route.js';
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.listen(3000, () => {
 
 app.use("/backend/user", userRouter)
 app.use("/backend/auth", authRouter)
+app.use("/backend/post", postRouter)
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
