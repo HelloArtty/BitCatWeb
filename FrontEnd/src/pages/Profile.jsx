@@ -6,6 +6,7 @@ import {
 } from 'firebase/storage';
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { app } from '../firebase';
 import {
     deleteUserFailure,
@@ -185,10 +186,13 @@ export default function Profile() {
                     className='border border-blue-1000 p-3 rounded-lg bg-slate-1000'
                     onChange={handleChange}
                 />
-                
+
                 <button disabled={loading} className='bg-blue-1001 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 '>
                     {loading ? 'Loading...' : 'Update'}
                 </button>
+                <Link to="/create-post" className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+                    Create Post
+                </Link>
             </form>
 
             <div className="flex justify-between mt-5">
@@ -199,21 +203,6 @@ export default function Profile() {
                     LogOut
                 </span>
             </div>
-            {/* <form className='mt-4' >
-            <input
-                    type="text"
-                    placeholder='contact'
-                    id='contact'
-                    className='border border-blue-1000 p-3 rounded-lg bg-slate-1000'
-                    onChange={handleAddContact}
-                />
-            </form>
-            <div className='mt-4'>
-                <span onClick={handleAddContact}
-                className='text-white cursor-pointer p-2 bg-blue-600 rounded-lg'>
-                    add Contact
-                </span>
-            </div> */}
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSuccess ? 'Profile Updated Successfully!' : ''}</p>
         </div>
