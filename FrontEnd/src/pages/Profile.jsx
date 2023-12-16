@@ -30,6 +30,7 @@ export default function Profile() {
     const [updateSuccess, setUpdateSuccess] = useState(false);
     const [formData, setFormData] = useState({});
     const [showPostError, setShowPostError] = useState(false);
+    const [userPost, setUserPost] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -140,6 +141,7 @@ export default function Profile() {
                 setShowPostError(true);
                 return;
             }
+            setUserPost(data);
         } catch (error) {
             setShowPostError(true);
         }
@@ -221,6 +223,38 @@ export default function Profile() {
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSuccess ? 'Profile Updated Successfully!' : ''}</p>
             <p className='text-red-700 mt-5'>{showPostError ? 'Error Showing Post!' : ''}</p>
+
+            {userPost &&
+                userPost.length > 0 &&
+                <div className='flex flex-col gap-4'>
+                    <h1 className='text-center font-semibold mt-7 text-3xl'>Your Posts</h1>
+                    {userPost.map((post) =>
+                        <div
+                            key={post._id}
+                            className="flex items-center mt-5 border rounded-lg p-3 justify-between gap-4"
+                        >
+                            <Link
+                                to={`/post/${post._id}`}>
+                                <img src={post.imageUrls[0]} alt="post cover"
+                                    className='w-40 h-40 object-cover rounded-lg' />
+                            </Link>
+                            <Link
+                                to={`/post/${post._id}`}
+                                className='flex-1 font-semibold hover:underline truncate'>
+                                <p>{post.name}</p>
+                            </Link>
+                            <div className='flex flex-col'>
+                                <button className='text-green-600 uppercase'>
+                                    edit
+                                </button>
+                                <button className='text-red-600 uppercase'>
+                                    delete
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            }
         </div>
     )
 }
