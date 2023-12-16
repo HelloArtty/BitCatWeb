@@ -29,7 +29,8 @@ export default function Profile() {
     const [fileUploadError, serFileUploadError] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
     const [formData, setFormData] = useState({});
-    const [addContactSuccess, setaddContactSuccess] = useState(false);
+    const [showPostError, setShowPostError] = useState(false);
+
     const dispatch = useDispatch();
 
 
@@ -130,7 +131,19 @@ export default function Profile() {
         }
     }
 
-
+    const handleShowPost = async () => {
+        try {
+            setShowPostError(false);
+            const res = await fetch(`backend/user/post/${currentUser._id}`);
+            const data = await res.json();
+            if (data.success === false) {
+                setShowPostError(true);
+                return;
+            }
+        } catch (error) {
+            setShowPostError(true);
+        }
+    }
 
     return (
         <div className="p-3 max-w-lg mx-auto">
@@ -194,17 +207,20 @@ export default function Profile() {
                     Create Post
                 </Link>
             </form>
-
+            <button onClick={handleShowPost} className='w-full text-semibold text-lg mt-4 bg-sky-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+                Show Post
+            </button>
             <div className="flex justify-between mt-5">
                 <span onClick={handleDeleteUser} className='text-white cursor-pointer p-2 bg-red-600 rounded-lg'>
                     Delete Account
                 </span>
-                <span onClick={handlesignout} className='text-white cursor-pointer p-2 bg-blue-600 rounded-lg w-32 text-center'>
+                <span onClick={handlesignout} className='text-white cursor-pointer p-2 bg-stone-600 rounded-lg w-32 text-center'>
                     LogOut
                 </span>
             </div>
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSuccess ? 'Profile Updated Successfully!' : ''}</p>
+            <p className='text-red-700 mt-5'>{showPostError ? 'Error Showing Post!' : ''}</p>
         </div>
     )
 }
