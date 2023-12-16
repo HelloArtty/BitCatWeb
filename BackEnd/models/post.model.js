@@ -14,12 +14,8 @@ const postSchema = new mongoose.Schema(
             type: Number,
             required:true,
         },
-        male:{
-            type: Boolean,
-            required: true,
-        },
-        female:{
-            type: Boolean,
+        sex:{
+            type: String,
             required: true,
         },
         description: {
