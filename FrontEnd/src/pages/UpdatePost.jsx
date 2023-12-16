@@ -162,26 +162,26 @@ export default function UpdatePost() {
                         value={formData.catBreed}
                     >
                         <>
-                            <option value="">Select Cat Breed</option>
-                            <option value="american shorthair">American Shorthair</option>
-                            <option value="american curl">American Curl</option>
-                            <option value="balinese">Balinese</option>
-                            <option value="bengal">Bengal</option>
-                            <option value="british shorthair">British Shorthair</option>
-                            <option value="chinchilla">Chinchilla</option>
-                            <option value="exotic shorthair">Exotic Shorthair</option>
-                            <option value="scottish fold">Scottish Fold</option>
-                            <option value="korat">Korat</option>
-                            <option value="khao manee">Khao Manee</option>
-                            <option value="maine coon">Maine Coon</option>
-                            <option value="munchkin">Munchkin</option>
-                            <option value="norwegian forest">Norwegian Forest</option>
-                            <option value="persian">Persian</option>
-                            <option value="ragdoll">Ragdoll</option>
-                            <option value="russian blue">Russian Blue</option>
-                            <option value="siamese">Siamese</option>
-                            <option value="snowshoe">Snowshoe</option>
-                            <option value="sphynx">Sphynx</option>
+                        <option value="">Select Cat Breed</option>
+                            <option value="American shorthair">American Shorthair</option>
+                            <option value="American curl">American Curl</option>
+                            <option value="Balinese">Balinese</option>
+                            <option value="Bengal">Bengal</option>
+                            <option value="British shorthair">British Shorthair</option>
+                            <option value="Chinchilla">Chinchilla</option>
+                            <option value="Exotic shorthair">Exotic Shorthair</option>
+                            <option value="Scottish fold">Scottish Fold</option>
+                            <option value="Korat">Korat</option>
+                            <option value="Khao manee">Khao Manee</option>
+                            <option value="Maine coon">Maine Coon</option>
+                            <option value="Munchkin">Munchkin</option>
+                            <option value="Norwegian forest">Norwegian Forest</option>
+                            <option value="Persian">Persian</option>
+                            <option value="Ragdoll">Ragdoll</option>
+                            <option value="Russian blue">Russian Blue</option>
+                            <option value="Siamese">Siamese</option>
+                            <option value="Snowshoe">Snowshoe</option>
+                            <option value="Sphynx">Sphynx</option>
                         </>
                     </select>
                     <input
@@ -202,8 +202,8 @@ export default function UpdatePost() {
                     >
                         <>
                             <option value="">Select Sex</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </>
                     </select>
                     <textarea

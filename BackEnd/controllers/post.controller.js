@@ -59,3 +59,50 @@ export const getPost = async (req, res, next) => {
         next(error);
     }
 };
+
+export const getPosts = async (req, res, next) => {
+    try {
+        const limit = parseInt(req.query.limit) || 9;
+        const startIndex = parseInt(req.query.startIndex) || 0;
+        let sex = req.query.sex;
+        let catBreed = req.query.catBreed;
+
+        if(sex === "male" || sex === "female"){
+            sex = { $in: [false, true] }
+        }
+
+        if(catBreed === "mixed"){
+            catBreed = { $in: [false, true] }
+        }
+
+        const searchTerm = req.query.searchTerm || '';
+
+        const sort = req.query.sort || 'createdAt';
+
+        const order = req.query.order || 'desc';
+
+        // MongoDB query
+        const posts = await Post.find({
+            name: { $regex: searchTerm, $options: 'i' },
+            $or: [
+                { sex: sex },
+                { catBreed: catBreed }
+            ]
+            , $or: [
+                { sex: sex },
+                { catBreed: { $regex: catBreed, $options: 'i' } }
+            ]
+            ,$or: [
+                { sex: sex || { $exists: true } },
+                { catBreed: catBreed || { $exists: true } }
+            ]
+        })
+            .sort({ [sort]: order })
+            .skip(startIndex)
+            .limit(limit);
+
+        return res.status(200).json(posts);
+    } catch (error) {
+        next(error);
+    }
+};

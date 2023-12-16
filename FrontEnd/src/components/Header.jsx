@@ -1,5 +1,4 @@
 import React from 'react';
-import { FaSearch } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -13,14 +12,14 @@ export default function Header() {
                         <span className='text-white text-4xl'>BitCat</span>
                     </h1>
                 </Link>
-                <form className='bg-slate-100 ml-5 p-3 rounded-xl flex items-center'>
+                {/* <form className='bg-slate-100 ml-5 p-3 rounded-xl flex items-center'>
                     <input
                         type='text'
                         placeholder='Search'
                         className='bg-transparent focus:outline-none w-24 sm:w-64'
                     />
                     <FaSearch className='text-slate-600' />
-                </form>
+                </form> */}
                 <ul className='flex gap-4'>
                     <Link to='/'>
                         <li className='font-inter ml-3 hidden sm:inline text-slate-100 hover:underline'>
