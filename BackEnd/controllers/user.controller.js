@@ -1,4 +1,5 @@
 import bcryptjs from 'bcryptjs';
+import Post from '../models/post.model.js';
 import User from '../models/user.model.js';
 import { errorHandler } from "../utils/error.js";
 
@@ -42,3 +43,16 @@ export const deleteUser = async (req, res, next) => {
         next(error)
     }
 }
+
+export const getUserPost = async (req, res, next) => {
+    if (req.user.id === req.params.id) {
+        try {
+            const post = await Post.find({ userRef: req.params.id });
+            res.status(200).json(post);
+        } catch (error) {
+            next(error);
+        }
+    } else {
+        return next(errorHandler(401, 'You can only view your own Post!'));
+    }
+};
