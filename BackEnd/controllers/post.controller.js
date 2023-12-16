@@ -81,7 +81,6 @@ export const getPosts = async (req, res, next) => {
 
         const order = req.query.order || 'desc';
 
-        // MongoDB query
         const posts = await Post.find({
             name: { $regex: searchTerm, $options: 'i' },
             $or: [
