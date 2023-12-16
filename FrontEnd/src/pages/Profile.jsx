@@ -147,6 +147,24 @@ export default function Profile() {
         }
     }
 
+    const handlePostDelete = async (postId) => {
+        try {
+            const res = await fetch(`backend/post/delete/${postId}`, {
+                method: 'DELETE',
+            });
+            const data = await res.json();
+            if (data.success === false) {
+                console.log(data.message);
+                return;
+            }
+            setUserPost((prev) =>
+                prev.filter((post) => post._id !== postId)
+            );
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
     return (
         <div className="p-3 max-w-lg mx-auto">
             <h1 className='text-5xl font-semibold text-center my-7'>
@@ -247,7 +265,7 @@ export default function Profile() {
                                 <button className='text-green-600 uppercase'>
                                     edit
                                 </button>
-                                <button className='text-red-600 uppercase'>
+                                <button onClick={() => handlePostDelete(post._id)} className='text-red-600 uppercase'>
                                     delete
                                 </button>
                             </div>
