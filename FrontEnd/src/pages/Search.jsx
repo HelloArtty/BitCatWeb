@@ -1,11 +1,97 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
+    const navigate = useNavigate();
+    const [sidebardata, setSidebardata] = useState({
+        searchTrem: '',
+        catBreed: '',
+        sex: '',
+        sort: 'created_at',
+        order: 'desc',
+    });
+    console.log(sidebardata)
+    const [loading, setLoading] = useState(false);
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search)
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        const catBreedFromUrl = urlParams.get('catBreed');
+        const sexFromUrl = urlParams.get('sex')
+        const sortFromUrl = urlParams.get('sort')
+        const orderFromUrl = urlParams.get('order')
+
+        if (
+            searchTermFromUrl ||
+            catBreedFromUrl ||
+            sexFromUrl ||
+            sortFromUrl ||
+            orderFromUrl
+        ) {
+            setSidebardata({
+                searchTrem: searchTermFromUrl || '',
+                catBreed: catBreedFromUrl || '',
+                sex: sexFromUrl || '',
+                sort: sortFromUrl || 'created_at',
+                order: orderFromUrl || 'desc',
+            });
+        }
+        const fetchPosts = async () => {
+            setLoading(true)
+            const searchQuery = urlParams.toString()
+            const res = await fetch(`/backend/post/get?${searchQuery}`)
+            const data = await res.json();
+            setPosts(data);
+            setLoading(false)
+        }
+
+        fetchPosts()
+    }, [location.search])
+
+    const handleChange = (e) => {
+        if (e.target.id === 'searchTerm') {
+            setSidebardata({
+                ...sidebardata,
+                searchTrem: e.target.value
+            })
+        }
+        if (e.target.id === 'catBreed') {
+            setSidebardata({
+                ...sidebardata,
+                catBreed: e.target.value
+            })
+        }
+        if (e.target.id === 'sex') {
+
+            setSidebardata({
+                ...sidebardata,
+                sex: e.target.value
+            })
+        }
+        if (e.target.id === 'sort_order') {
+            const sort = e.target.value.split('_')[0] || 'created_at';
+            const order = e.target.value.split('_')[1] || 'desc';
+            setSidebardata({ ...sidebardata, sort, order })
+        }
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const urlParams = new URLSearchParams()
+        urlParams.append('searchTerm', sidebardata.searchTrem)
+        urlParams.append('catBreed', sidebardata.catBreed)
+        urlParams.append('sex', sidebardata.sex)
+        urlParams.append('sort', sidebardata.sort)
+        urlParams.append('order', sidebardata.order)
+        const searchQuery = urlParams.toString()
+        navigate(`/search?${searchQuery}`)
+    }
 
     return (
         <div className='flex flex-col md:row'>
             <div className='p-7 border-b-2 md:border-r-2'>
-                <form className='flex flex-col gap-8'>
+                <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
                     <div className='flex items-center gap-2 justify-center'>
                         <label
                             className='whitespace-nowrap font-semibold'>
@@ -16,6 +102,9 @@ export default function Search() {
                             id='searchTerm'
                             placeholder='Search...'
                             className='border-blue-1000 bg-slate-1000 border rounded-lg p-3 '
+                            onChange={handleChange}
+                            required
+                            value={sidebardata.searchTrem}
                         />
                     </div>
                     <div className='gap-6 justify-center text-center flex flex-wrap'>
@@ -27,6 +116,8 @@ export default function Search() {
                             className=" border-blue-1000 bg-slate-1000 border p-3 ml-2 rounded-lg"
                             id="catBreed"
                             required
+                            onChange={handleChange}
+                            value={sidebardata.catBreed}
                         >
                             <>
                                 <option value="">Select Cat Breed</option>
@@ -59,6 +150,8 @@ export default function Search() {
                             className="border-blue-1000 bg-slate-1000 border p-3 ml-3 rounded-lg"
                             id="sex"
                             required
+                            onChange={handleChange}
+                            value={sidebardata.sex}
                         >
                             <>
                                 <option value="">Select Sex</option>
@@ -72,9 +165,14 @@ export default function Search() {
                         </label>
                         <select
                             className="border-blue-1000 bg-slate-1000 border p-3 ml-3 rounded-lg"
-                            id="sort_order">
-                            <option>Age low to high</option>
-                            <option>Age high to low</option>
+                            id="sort_order"
+                            onChange={handleChange}
+                            value={`${sidebardata.sort}_${sidebardata.order}`}
+                        >
+                            <option value='age_asc'>Age low to high</option>
+                            <option value='age_desc'>Age high to low</option>
+                            <option value='createdAt_desc'>Lastest</option>
+                            <option value='createdAt_asc'>Oldest</option>
                         </select>
                     </div>
                     <button
