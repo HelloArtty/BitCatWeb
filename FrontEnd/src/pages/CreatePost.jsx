@@ -5,12 +5,21 @@ import {
     uploadBytesResumable
 } from "firebase/storage";
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { app } from '../firebase';
 
 export default function CreatePost() {
+    const { currentUser } = useSelector(state => state.user)
+    const navigate  = useNavigate()
     const [files, setFiles] = useState([])
     const [formData, setFormData] = useState({
         imageUrls: [],
+        name: '',
+        catBreed: '',
+        age: '',
+        sex: '',
+        description: '',
     });
     const [imageUploadError, setImageUploadError] = useState(false);
     const [uploading, setUploading] = useState(false);
@@ -32,7 +41,7 @@ export default function CreatePost() {
                 });
                 setImageUploadError(false);
                 setUploading(false);
-                
+
             }).catch((err) => {
                 setImageUploadError('Image upload failed (2mb max per image)');
                 setUploading(false);
@@ -75,10 +84,50 @@ export default function CreatePost() {
         });
     };
 
+    const handleChanges = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            if (formData.imageUrls.length < 1) {
+                return setError('You must upload at least one image');
+            }
+            if (formData.name.length < 10 || formData.name.length > 50) {
+                return setError('Title must be between 10 and 50 characters');
+            }
+            if (formData.description.length < 10 || formData.description.length > 500) {
+                return setError('Description must be between 10 and 500 characters');
+            }
+            setLoading(true);
+            setError(false);
+            const res = await fetch('/backend/post/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    userRef: currentUser._id,
+                }),
+            });
+            const data = await res.json();
+            setLoading(false);
+            if (data.success === false) {
+                setError(data.message);
+            }
+            navigate(`/post/${data._id}`)
+        } catch (error) {
+            setError(error.message);
+            setLoading(false);
+        }
+    };
+
     return (
         <main className='p-3 max-w-4xl mx-auto'>
             <h1 className='text-3xl font-semibold text-center my-7'>Create a Post</h1>
-            <form className='flex flex-col sm:flex-row gap-4'>
+            <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
                 <div className='flex flex-col gap-4 flex-1'>
                     <input
                         type="text"
@@ -87,20 +136,57 @@ export default function CreatePost() {
                         id='name'
                         maxLength="50" minLength="10"
                         required
+                        onChange={handleChanges}
+                        value={formData.name}
                     />
-                    <input
+                    {/* <input
                         type="text"
                         placeholder="Cat Breed"
                         className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
                         id='catBreed'
                         required
-                    />
+                        onChange={handleChanges}
+                        value={formData.catBreed}
+                    /> */}
+                    <select
+                        className="border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
+                        id="catBreed"
+                        required
+                        onChange={handleChanges}
+                        value={formData.catBreed}
+                    // onChange={(e) => setFormData({ ...formData, catBreed: e.target.value })}
+                    >
+                        <>
+                            <option value="">Select Cat Breed</option>
+                            <option value="american shorthair">American Shorthair</option>
+                            <option value="american curl">American Curl</option>
+                            <option value="balinese">Balinese</option>
+                            <option value="bengal">Bengal</option>
+                            <option value="british shorthair">British Shorthair</option>
+                            <option value="chinchilla">Chinchilla</option>
+                            <option value="exotic shorthair">Exotic Shorthair</option>
+                            <option value="scottish fold">Scottish Fold</option>
+                            <option value="korat">Korat</option>
+                            <option value="khao manee">Khao Manee</option>
+                            <option value="maine coon">Maine Coon</option>
+                            <option value="munchkin">Munchkin</option>
+                            <option value="norwegian forest">Norwegian Forest</option>
+                            <option value="persian">Persian</option>
+                            <option value="ragdoll">Ragdoll</option>
+                            <option value="russian blue">Russian Blue</option>
+                            <option value="siamese">Siamese</option>
+                            <option value="snowshoe">Snowshoe</option>
+                            <option value="sphynx">Sphynx</option>
+                        </>
+                    </select>
                     <input
                         type="number"
                         placeholder="Age"
                         className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
                         id='age'
                         required
+                        onChange={handleChanges}
+                        value={formData.age}
                     />
                     {/* <input
                         type="text"
@@ -114,18 +200,24 @@ export default function CreatePost() {
                         id="sex"
                         required
                         value={formData.sex}
-                        onChange={(e) => setFormData({ ...formData, sex: e.target.value })}
+                        onChange={handleChanges}
+                    // onChange={(e) => setFormData({ ...formData, sex: e.target.value })}
                     >
-                        <option value="">Select Sex</option>
-                        <option value="female">Female</option>
-                        <option value="male">Male</option>
+                        <>
+                            <option value="">Select Sex</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </>
                     </select>
                     <textarea
                         type="text"
                         placeholder="Description"
                         className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
                         id='description'
-                        required />
+                        required
+                        onChange={handleChanges}
+                        value={formData.description}
+                    />
                 </div>
                 <div className='flex flex-1 flex-col gap-4'>
                     <p className='font-semibold'>
@@ -163,7 +255,7 @@ export default function CreatePost() {
                                 <img
                                     src={url}
                                     alt='listing image'
-                                    className='w-20 h-20 object-contain rounded-lg'
+                                    className='w-1/2 h-40 object-cover rounded-lg'
                                 />
                                 <button
                                     type='button'
@@ -174,9 +266,11 @@ export default function CreatePost() {
                                 </button>
                             </div>
                         ))}
-                    <button className='p-3 bg-blue-1001 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-                        Create Post
+                    <button disabled={loading || uploading}
+                        className='p-3 bg-blue-1001 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
+                        {loading ? 'Creating...' : 'Create Post'}
                     </button>
+                    {error && <p className='text-red-700 text-sm'>{error}</p>}
                 </div>
             </form>
         </main>
