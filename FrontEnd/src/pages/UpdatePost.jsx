@@ -4,15 +4,16 @@ import {
     ref,
     uploadBytesResumable
 } from "firebase/storage";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { app } from '../firebase';
 
-export default function CreatePost() {
+export default function UpdatePost() {
     const { currentUser } = useSelector(state => state.user)
     const navigate  = useNavigate()
     const [files, setFiles] = useState([])
+    const params = useParams()
     const [formData, setFormData] = useState({
         imageUrls: [],
         name: '',
@@ -25,7 +26,21 @@ export default function CreatePost() {
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-    console.log(formData)
+
+    useEffect(() => {
+        const fetchPost = async () => {
+            const postId = params.postId;
+            const res = await fetch(`/backend/post/get/${postId}`);
+            const data = await res.json();
+            if(data.success === false){
+                console.log(data.message);
+                return;
+            }
+            setFormData(data);
+        }
+        fetchPost();
+    },[]);
+
 
     const handleImageSubmit = (e) => {
         if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
@@ -102,7 +117,7 @@ export default function CreatePost() {
             }
             setLoading(true);
             setError(false);
-            const res = await fetch('/backend/post/create', {
+            const res = await fetch(`/backend/post/update/${params.postId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -126,7 +141,7 @@ export default function CreatePost() {
 
     return (
         <main className='p-3 max-w-4xl mx-auto'>
-            <h1 className='text-3xl font-semibold text-center my-7'>Create a Post</h1>
+            <h1 className='text-3xl font-semibold text-center my-7'>Edit Post</h1>
             <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
                 <div className='flex flex-col gap-4 flex-1'>
                     <input
@@ -139,22 +154,12 @@ export default function CreatePost() {
                         onChange={handleChanges}
                         value={formData.name}
                     />
-                    {/* <input
-                        type="text"
-                        placeholder="Cat Breed"
-                        className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
-                        id='catBreed'
-                        required
-                        onChange={handleChanges}
-                        value={formData.catBreed}
-                    /> */}
                     <select
                         className="border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
                         id="catBreed"
                         required
                         onChange={handleChanges}
                         value={formData.catBreed}
-                    // onChange={(e) => setFormData({ ...formData, catBreed: e.target.value })}
                     >
                         <>
                             <option value="">Select Cat Breed</option>
@@ -188,13 +193,6 @@ export default function CreatePost() {
                         onChange={handleChanges}
                         value={formData.age}
                     />
-                    {/* <input
-                        type="text"
-                        placeholder="Sex"
-                        className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
-                        id='sex'
-                        required
-                    /> */}
                     <select
                         className="border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
                         id="sex"
@@ -268,7 +266,7 @@ export default function CreatePost() {
                         ))}
                     <button disabled={loading || uploading}
                         className='p-3 bg-blue-1001 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-                        {loading ? 'Creating...' : 'Create Post'}
+                        {loading ? 'Creating...' : 'Edit Post'}
                     </button>
                     {error && <p className='text-red-700 text-sm'>{error}</p>}
                 </div>

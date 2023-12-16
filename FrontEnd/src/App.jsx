@@ -11,6 +11,7 @@ import HowToPet from './pages/HowToPet';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import UpdatePost from './pages/UpdatePost';
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Route element = {<PrivateRoute />} >
           <Route path='/profile' element = {<Profile />} />
           <Route path='/create-post' element = {<CreatePost />} />
+          <Route path='/update-post/:postId' element = {<UpdatePost />} />
         </Route>
       </Routes>
     </BrowserRouter>

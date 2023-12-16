@@ -262,9 +262,11 @@ export default function Profile() {
                                 <p>{post.name}</p>
                             </Link>
                             <div className='flex flex-col'>
-                                <button className='text-green-600 uppercase'>
-                                    edit
-                                </button>
+                                <Link to ={`/update-post/${post._id}`}>
+                                    <button className='text-green-600 uppercase'>
+                                        edit
+                                    </button>
+                                </Link>
                                 <button onClick={() => handlePostDelete(post._id)} className='text-red-600 uppercase'>
                                     delete
                                 </button>
