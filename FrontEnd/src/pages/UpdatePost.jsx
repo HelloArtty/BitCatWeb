@@ -199,7 +199,6 @@ export default function UpdatePost() {
                         required
                         value={formData.sex}
                         onChange={handleChanges}
-                    // onChange={(e) => setFormData({ ...formData, sex: e.target.value })}
                     >
                         <>
                             <option value="">Select Sex</option>
