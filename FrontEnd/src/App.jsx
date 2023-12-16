@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import HowToPet from './pages/HowToPet';
 import Post from './pages/Post';
 import Profile from './pages/Profile';
+import Search from './pages/Search';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import UpdatePost from './pages/UpdatePost';
@@ -29,6 +30,7 @@ export default function App() {
         <Route path='/signin' element = {<SignIn />} />
         <Route path='/signup' element = {<SignUp />} />
         <Route path='/post/:postId' element = {<Post />} />
+        <Route path='/search' element = {<Search />} />
 
         <Route element = {<PrivateRoute />} >
           <Route path='/profile' element = {<Profile />} />
