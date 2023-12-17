@@ -103,7 +103,6 @@ export default function Search() {
                             placeholder='Search...'
                             className='border-blue-1000 bg-slate-1000 border rounded-lg p-3 '
                             onChange={handleChange}
-                            required
                             value={sidebardata.searchTrem}
                         />
                     </div>
@@ -115,7 +114,6 @@ export default function Search() {
                         <select
                             className=" border-blue-1000 bg-slate-1000 border p-3 ml-2 rounded-lg"
                             id="catBreed"
-                            required
                             onChange={handleChange}
                             value={sidebardata.catBreed}
                         >
@@ -149,7 +147,6 @@ export default function Search() {
                         <select
                             className="border-blue-1000 bg-slate-1000 border p-3 ml-3 rounded-lg"
                             id="sex"
-                            required
                             onChange={handleChange}
                             value={sidebardata.sex}
                         >
