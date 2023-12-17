@@ -163,22 +163,22 @@ export default function UpdatePost() {
                     >
                         <>
                         <option value="">Select Cat Breed</option>
-                            <option value="American shorthair">American Shorthair</option>
-                            <option value="American curl">American Curl</option>
+                            <option value="American Shorthair">American Shorthair</option>
+                            <option value="American Curl">American Curl</option>
                             <option value="Balinese">Balinese</option>
                             <option value="Bengal">Bengal</option>
-                            <option value="British shorthair">British Shorthair</option>
+                            <option value="British Shorthair">British Shorthair</option>
                             <option value="Chinchilla">Chinchilla</option>
-                            <option value="Exotic shorthair">Exotic Shorthair</option>
-                            <option value="Scottish fold">Scottish Fold</option>
+                            <option value="Exotic Shorthair">Exotic Shorthair</option>
+                            <option value="Scottish Fold">Scottish Fold</option>
                             <option value="Korat">Korat</option>
-                            <option value="Khao manee">Khao Manee</option>
-                            <option value="Maine coon">Maine Coon</option>
+                            <option value="Khao Manee">Khao Manee</option>
+                            <option value="Maine Coon">Maine Coon</option>
                             <option value="Munchkin">Munchkin</option>
-                            <option value="Norwegian forest">Norwegian Forest</option>
+                            <option value="Norwegian Forest">Norwegian Forest</option>
                             <option value="Persian">Persian</option>
                             <option value="Ragdoll">Ragdoll</option>
-                            <option value="Russian blue">Russian Blue</option>
+                            <option value="Russian Blue">Russian Blue</option>
                             <option value="Siamese">Siamese</option>
                             <option value="Snowshoe">Snowshoe</option>
                             <option value="Sphynx">Sphynx</option>
@@ -265,7 +265,7 @@ export default function UpdatePost() {
                         ))}
                     <button disabled={loading || uploading}
                         className='p-3 bg-blue-1001 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80'>
-                        {loading ? 'Creating...' : 'Edit Post'}
+                        {loading ? 'Updating...' : 'Edit Post'}
                     </button>
                     {error && <p className='text-red-700 text-sm'>{error}</p>}
                 </div>

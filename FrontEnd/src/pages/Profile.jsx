@@ -28,9 +28,14 @@ export default function Profile() {
     const [filePerc, setFilePerc] = useState(0);
     const [fileUploadError, serFileUploadError] = useState(false);
     const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [contactSuccess, setContactSuccess] = useState(false);
     const [formData, setFormData] = useState({});
     const [showPostError, setShowPostError] = useState(false);
     const [userPost, setUserPost] = useState([]);
+    const [formDataContact, setFormDataContact] = useState({
+        phone: '',
+    });
+    console.log(formDataContact);
 
     const dispatch = useDispatch();
 
@@ -59,7 +64,7 @@ export default function Profile() {
                 setFilePerc(Math.round(progress));
             },
             (error) => {
-                serFileUploadError(true);
+                setFileUploadError(true);
             },
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -72,7 +77,36 @@ export default function Profile() {
     };
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.id]: e.target.value });
+        if (e.target.id === 'contact') {
+            setFormDataContact({ ...formDataContact, phone: e.target.value });
+        } else {
+            setFormData({ ...formData, [e.target.id]: e.target.value });
+        }
+    };
+
+    const handleSubmitContact = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`backend/contact/create-contact/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formDataContact,
+                    userRef: currentUser._id,
+                }
+                ),
+            });
+            const data = await res.json();
+            if (data.success === false) {
+                console.log(data.message);
+                return;
+            }
+            setContactSuccess(true);
+        } catch (error) {
+            console.log(error.message);
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -91,7 +125,6 @@ export default function Profile() {
                 dispatch(updateUserFailure(data.message));
                 return;
             }
-
             dispatch(updateUserSuccess(data));
             setUpdateSuccess(true);
         } catch (error) {
@@ -130,7 +163,7 @@ export default function Profile() {
         } catch (error) {
             dispatch(signoutUserFailure(error.message));
         }
-    }
+    };
 
     const handleShowPost = async () => {
         try {
@@ -145,7 +178,7 @@ export default function Profile() {
         } catch (error) {
             setShowPostError(true);
         }
-    }
+    };
 
     const handlePostDelete = async (postId) => {
         try {
@@ -163,7 +196,7 @@ export default function Profile() {
         } catch (error) {
             console.log(error.message)
         }
-    }
+    };
 
     return (
         <div className="p-3 max-w-lg mx-auto">
@@ -219,13 +252,27 @@ export default function Profile() {
                     className='border border-blue-1000 p-3 rounded-lg bg-slate-1000'
                     onChange={handleChange}
                 />
-
-                <button disabled={loading} className='bg-blue-1001 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 '>
-                    {loading ? 'Loading...' : 'Update'}
+                <div className='flex flex-wrap justify-center'>
+                    <button disabled={loading} className='bg-blue-1001 w-60 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 '>
+                        {loading ? 'Loading...' : 'Update'}
+                    </button>
+                    <Link to="/create-post" className='bg-green-700 ml-1 w-60 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+                        Create Post
+                    </Link>
+                </div>
+            </form>
+            <form onSubmit={handleSubmitContact} className='mt-4 flex'>
+                <input
+                    type="number"
+                    placeholder='phone'
+                    id='contact'
+                    className='border border-blue-1000 p-3 rounded-lg bg-slate-1000'
+                    value={formDataContact.phone}
+                    onChange={handleChange}
+                />
+                <button className='bg-green-700 w-1/2 ml-1 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+                    Add Contact
                 </button>
-                <Link to="/create-post" className='bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
-                    Create Post
-                </Link>
             </form>
             <button onClick={handleShowPost} className='w-full text-semibold text-lg mt-4 bg-sky-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
                 Show Post
@@ -241,6 +288,7 @@ export default function Profile() {
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSuccess ? 'Profile Updated Successfully!' : ''}</p>
             <p className='text-red-700 mt-5'>{showPostError ? 'Error Showing Post!' : ''}</p>
+
 
             {userPost &&
                 userPost.length > 0 &&
@@ -262,7 +310,7 @@ export default function Profile() {
                                 <p>{post.name}</p>
                             </Link>
                             <div className='flex flex-col'>
-                                <Link to ={`/update-post/${post._id}`}>
+                                <Link to={`/update-post/${post._id}`}>
                                     <button className='text-green-600 uppercase'>
                                         edit
                                     </button>
@@ -278,3 +326,4 @@ export default function Profile() {
         </div>
     )
 }
+
