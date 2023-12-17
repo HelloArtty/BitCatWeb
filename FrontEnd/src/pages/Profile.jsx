@@ -4,7 +4,7 @@ import {
     ref,
     uploadBytesResumable,
 } from 'firebase/storage';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { app } from '../firebase';
@@ -21,24 +21,29 @@ import {
 } from '../redux/user/userSlice';
 
 
+
+
 export default function Profile() {
     const fileRef = useRef(null)
     const { currentUser, loading, error } = useSelector((state) => state.user);
     const [file, setFile] = useState(undefined);
     const [filePerc, setFilePerc] = useState(0);
     const [fileUploadError, serFileUploadError] = useState(false);
-    const [updateSuccess, setUpdateSuccess] = useState(false);
-    const [contactSuccess, setContactSuccess] = useState(false);
     const [formData, setFormData] = useState({});
     const [showPostError, setShowPostError] = useState(false);
     const [userPost, setUserPost] = useState([]);
+    const [updateSuccess, setUpdateSuccess] = useState(false);
     const [formDataContact, setFormDataContact] = useState({
         phone: '',
     });
+    const [formDataLocation, setFormDataLocation] = useState({
+        location: '',
+    });
+    
     console.log(formDataContact);
+    console.log(formDataLocation);
 
     const dispatch = useDispatch();
-
 
     //firebase storage
     // allow read;
@@ -51,6 +56,7 @@ export default function Profile() {
             handleFileUpload(file);
         }
     }, [file]);
+
     const handleFileUpload = (file) => {
         const storage = getStorage(app);
         const fileName = new Date().getTime() + file.name;
@@ -79,9 +85,12 @@ export default function Profile() {
     const handleChange = (e) => {
         if (e.target.id === 'contact') {
             setFormDataContact({ ...formDataContact, phone: e.target.value });
-        } else {
+        } else if (e.target.id === 'username') {
             setFormData({ ...formData, [e.target.id]: e.target.value });
+        } else if (e.target.id === 'location'){
+            setFormDataLocation({ ...formDataLocation, location: e.target.value });
         }
+
     };
 
     const handleSubmitContact = async (e) => {
@@ -104,6 +113,31 @@ export default function Profile() {
                 return;
             }
             setContactSuccess(true);
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
+    const handleSubmitLocation = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`backend/location/create-location/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formDataLocation,
+                    userRef: currentUser._id,
+                }
+                ),
+            });
+            const data = await res.json();
+            if (data.success === false) {
+                console.log(data.message);
+                return;
+            }
+            setLocationSuccess(true);
         } catch (error) {
             console.log(error.message);
         }
@@ -274,6 +308,19 @@ export default function Profile() {
                     Add Contact
                 </button>
             </form>
+            <form onSubmit={handleSubmitLocation} className='mt-4 flex'>
+                <input
+                    type="text"
+                    placeholder='Address'
+                    id='location'
+                    className='border border-blue-1000 p-3 rounded-lg bg-slate-1000'
+                    value={formDataLocation.location}
+                    onChange={handleChange}
+                />
+                <button className='bg-green-700 w-1/2 ml-1 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+                    Add Location
+                </button>
+            </form>
             <button onClick={handleShowPost} className='w-full text-semibold text-lg mt-4 bg-sky-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
                 Show Post
             </button>
@@ -326,4 +373,5 @@ export default function Profile() {
         </div>
     )
 }
+        
 
