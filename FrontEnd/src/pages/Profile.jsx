@@ -85,10 +85,10 @@ export default function Profile() {
     const handleChange = (e) => {
         if (e.target.id === 'contact') {
             setFormDataContact({ ...formDataContact, phone: e.target.value });
-        } else if (e.target.id === 'username') {
-            setFormData({ ...formData, [e.target.id]: e.target.value });
         } else if (e.target.id === 'location') {
             setFormDataLocation({ ...formDataLocation, location: e.target.value });
+        } else {
+            setFormData({ ...formData, [e.target.id]: e.target.value });
         }
 
     };
@@ -96,23 +96,25 @@ export default function Profile() {
     const handleSubmitContact = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`backend/contact/create-contact/`, {
+            if (formDataContact.phone.length < 10) {
+                return setError('Phone number must be 10 digits');
+            }
+            const res = await fetch(`/backend/contact/create-contact/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    ...formDataContact,
+                    phone: formDataContact.phone,
                     userRef: currentUser._id,
-                }
-                ),
+                }),
             });
             const data = await res.json();
             if (data.success === false) {
                 console.log(data.message);
                 return;
             }
-            setContactSuccess(true);
+
         } catch (error) {
             console.log(error.message);
         }
@@ -137,7 +139,7 @@ export default function Profile() {
                 console.log(data.message);
                 return;
             }
-            setLocationSuccess(true);
+            // setLocationSuccess(true);
         } catch (error) {
             console.log(error.message);
         }
