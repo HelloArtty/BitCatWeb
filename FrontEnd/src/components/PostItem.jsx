@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaLocationDot } from "react-icons/fa6";
 import { PiCatDuotone, PiGenderIntersexBold } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +27,11 @@ export default function PostItem({ post }) {
                         <PiGenderIntersexBold className='h-5 w-5' />
                         <p className='text-sm text-slate-1002 truncate' >: {post.sex}</p>
                     </div>
-                        <p className='text-sm text-slate-1002 line-clamp-4'>{post.description}</p>
+                    <div className='flex gap-1 items-center'>
+                        <FaLocationDot className='h-4 w-4' />
+                        <p className='text-sm text-slate-1002 truncate' >: {post.location}</p>
+                    </div>
+                    <p className='text-sm text-slate-1002 line-clamp-4'>{post.description}</p>
                 </div>
             </Link>
         </div>

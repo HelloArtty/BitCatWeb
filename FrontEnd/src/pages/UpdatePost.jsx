@@ -11,7 +11,7 @@ import { app } from '../firebase';
 
 export default function UpdatePost() {
     const { currentUser } = useSelector(state => state.user)
-    const navigate  = useNavigate()
+    const navigate = useNavigate()
     const [files, setFiles] = useState([])
     const params = useParams()
     const [formData, setFormData] = useState({
@@ -20,6 +20,7 @@ export default function UpdatePost() {
         catBreed: '',
         age: '',
         sex: '',
+        location:'',
         description: '',
     });
     const [imageUploadError, setImageUploadError] = useState(false);
@@ -32,14 +33,14 @@ export default function UpdatePost() {
             const postId = params.postId;
             const res = await fetch(`/backend/post/get/${postId}`);
             const data = await res.json();
-            if(data.success === false){
+            if (data.success === false) {
                 console.log(data.message);
                 return;
             }
             setFormData(data);
         }
         fetchPost();
-    },[]);
+    }, []);
 
 
     const handleImageSubmit = (e) => {
@@ -162,7 +163,7 @@ export default function UpdatePost() {
                         value={formData.catBreed}
                     >
                         <>
-                        <option value="">Select Cat Breed</option>
+                            <option value="">Select Cat Breed</option>
                             <option value="American Shorthair">American Shorthair</option>
                             <option value="American Curl">American Curl</option>
                             <option value="Balinese">Balinese</option>
@@ -206,6 +207,15 @@ export default function UpdatePost() {
                             <option value="Female">Female</option>
                         </>
                     </select>
+                    <input
+                        type="text"
+                        placeholder="Address"
+                        className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
+                        id='location'
+                        required
+                        onChange={handleChanges}
+                        value={formData.location}
+                    />
                     <textarea
                         type="text"
                         placeholder="Description"

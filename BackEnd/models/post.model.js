@@ -18,6 +18,10 @@ const postSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        location:{
+            type : String,
+            require : true,
+        },
         description: {
             type: String,
             required: true,
