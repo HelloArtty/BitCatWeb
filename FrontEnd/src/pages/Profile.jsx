@@ -39,7 +39,7 @@ export default function Profile() {
     const [formDataLocation, setFormDataLocation] = useState({
         location: '',
     });
-    
+
     console.log(formDataContact);
     console.log(formDataLocation);
 
@@ -87,7 +87,7 @@ export default function Profile() {
             setFormDataContact({ ...formDataContact, phone: e.target.value });
         } else if (e.target.id === 'username') {
             setFormData({ ...formData, [e.target.id]: e.target.value });
-        } else if (e.target.id === 'location'){
+        } else if (e.target.id === 'location') {
             setFormDataLocation({ ...formDataLocation, location: e.target.value });
         }
 
@@ -287,10 +287,10 @@ export default function Profile() {
                     onChange={handleChange}
                 />
                 <div className='flex flex-wrap justify-center'>
-                    <button disabled={loading} className='bg-blue-1001 w-60 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 '>
+                    <button disabled={loading} className='bg-blue-1001 mt-1 w-60 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80 '>
                         {loading ? 'Loading...' : 'Update'}
                     </button>
-                    <Link to="/create-post" className='bg-green-700 ml-1 w-60 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+                    <Link to="/create-post" className='bg-green-700 ml-1 mt-1 w-60 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
                         Create Post
                     </Link>
                 </div>
@@ -298,7 +298,7 @@ export default function Profile() {
             <form onSubmit={handleSubmitContact} className='mt-4 flex'>
                 <input
                     type="number"
-                    placeholder='phone'
+                    placeholder='Phone'
                     id='contact'
                     className='border border-blue-1000 p-3 rounded-lg bg-slate-1000'
                     value={formDataContact.phone}
@@ -321,7 +321,8 @@ export default function Profile() {
                     Add Location
                 </button>
             </form>
-            <button onClick={handleShowPost} className='w-full text-semibold text-lg mt-4 bg-sky-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
+            <button onClick={handleShowPost}
+                className='w-full text-semibold text-lg mt-4 bg-sky-600 text-white p-3 rounded-lg uppercase text-center hover:opacity-95'>
                 Show Post
             </button>
             <div className="flex justify-between mt-5">
@@ -373,5 +374,5 @@ export default function Profile() {
         </div>
     )
 }
-        
+
 

@@ -74,7 +74,7 @@ export default function post() {
                         </p>
                     )}
                     <div className='flex flex-col max-w-xl mx-auto p-4 my-7 gap-4 border-2 bg-slate-1000 border-slate-500 border-ls'>
-                        <p className='text-3xl font-semibold'>
+                        <p className='text-3xl font-semibold line-clamp-1'>
                             Name: {post.name}
                         </p>
                         <p className='flex items-center gap-2 text-slate-600  text-l'>
