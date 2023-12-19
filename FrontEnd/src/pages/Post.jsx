@@ -36,6 +36,7 @@ export default function post() {
         };
         fetchPost();
     }, [params.postId]);
+    
     return (
         <main>
             {loading && <p className="text-center text-blue-1001 my-7 text-2xl" >Loading...</p>}
@@ -88,6 +89,9 @@ export default function post() {
                         </p>
                         <p className='flex items-center gap-2 text-slate-600  text-l'>
                             <span className='font-semibold text-black'>Address: </span>{post.location}
+                        </p>
+                        <p className='flex items-center gap-2 text-slate-600  text-l'>
+                            <span className='font-semibold text-black'>Contact: </span>{post.contact}
                         </p>
                         <p className='text-slate-800'>
                             <span className='font-semibold text-black'>Description: </span>

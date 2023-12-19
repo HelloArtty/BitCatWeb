@@ -39,7 +39,6 @@ export default function Profile() {
     const [formDataLocation, setFormDataLocation] = useState({
         location: '',
     });
-
     console.log(formDataContact);
     console.log(formDataLocation);
 
@@ -56,6 +55,7 @@ export default function Profile() {
             handleFileUpload(file);
         }
     }, [file]);
+
 
     const handleFileUpload = (file) => {
         const storage = getStorage(app);
@@ -216,6 +216,7 @@ export default function Profile() {
         }
     };
 
+
     const handlePostDelete = async (postId) => {
         try {
             const res = await fetch(`backend/post/delete/${postId}`, {
@@ -338,8 +339,6 @@ export default function Profile() {
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSuccess ? 'Profile Updated Successfully!' : ''}</p>
             <p className='text-red-700 mt-5'>{showPostError ? 'Error Showing Post!' : ''}</p>
-
-
             {userPost &&
                 userPost.length > 0 &&
                 <div className='flex flex-col gap-4'>
@@ -373,6 +372,7 @@ export default function Profile() {
                     )}
                 </div>
             }
+
         </div>
     )
 }

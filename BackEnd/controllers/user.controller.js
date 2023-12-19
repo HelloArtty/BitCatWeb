@@ -1,4 +1,5 @@
 import bcryptjs from 'bcryptjs';
+import Contact from '../models/contact.model.js';
 import Post from '../models/post.model.js';
 import User from '../models/user.model.js';
 import { errorHandler } from "../utils/error.js";
@@ -54,5 +55,35 @@ export const getUserPost = async (req, res, next) => {
         }
     } else {
         return next(errorHandler(401, 'You can only view your own Post!'));
+    }
+};
+
+
+export const getUserContact = async (req, res, next) => {
+    if (req.user.id === req.params.id) {
+        try {
+            const oldestContact = await Contact.find({ userRef: req.params.id })
+                .sort({ createdAt: -1 })
+                .limit(1);
+
+            if (oldestContact.length === 0) {
+                return res.status(404).json({ message: 'No contact found for the user' });
+            }
+
+            const user = await User.findById(req.params.id);
+            const result = {
+                user: {
+                    _id: user._id,
+                    name: user.username,
+                },
+                contact: oldestContact[0],
+            };
+
+            res.status(200).json(result);
+        } catch (error) {
+            next(error);
+        }
+    } else {
+        return next(errorHandler(401, 'You can only view your own Contact!'));
     }
 };
