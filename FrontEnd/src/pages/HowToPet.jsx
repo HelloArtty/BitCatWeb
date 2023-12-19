@@ -5,9 +5,9 @@ import "../css/HowTo.css";
 const HowToPet = () => {
     return (
         <>
-            <div className="section1">
+            <div className="section1 bg-cover bg-cat bg-center">
                 <div className="content">
-                    <h1 className="text-6xl font-bold ">How To Pet</h1>
+                    <h1 className="text-7xl text-blue-1000 md:text-9xl font-bold text-center ">How To Pet</h1>
                 </div>
             </div>
             <div className="blog">

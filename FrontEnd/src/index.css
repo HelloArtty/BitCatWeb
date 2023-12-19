@@ -5,4 +5,5 @@
 body {
     font-family: Inter;
     background-color: #FFFFFF;
+    overflow-x: hidden;
 }

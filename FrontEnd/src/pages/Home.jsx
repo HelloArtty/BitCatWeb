@@ -26,7 +26,7 @@ export default function Home() {
     }, []);
     return (
         <div>
-            <div className='bg-slate-1000'>
+            <div className='bg-slate-200 '>
                 <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
                     <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
                         BitCat
@@ -79,28 +79,26 @@ export default function Home() {
                     </div>
                 )}
             </div>
-            <div className='h-[600px] bg-slate-1000 flex flex-col justify-center'>
-                <div className=' justify-center mt-16'>
-                    <h1 className='text-center text-9xl font-bold'>
+            <div class='h-[700px] bg-slate-200 flex flex-col justify-center p-4'>
+                <div class='mt-8'>
+                    <h1 class='text-center text-5xl md:text-9xl font-bold'>
                         How To Pet
                     </h1>
-                    <div className=' flex justify-center'>
-                        <p className='text-xl m-5 w-1/2  text-center'>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                            Corporis nulla similique sit mollitia, nihil harum vel quis et exercitationem eligendi quas!
-                            Incidunt ex illo consequatur quod voluptatem impedit eligendi culpa.
+                    <div class='flex justify-center'>
+                        <p class='text-base md:text-xl m-5 w-full md:w-1/2 text-center'>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis nulla similique sit mollitia, nihil harum vel quis et exercitationem eligendi quas! Incidunt ex illo consequatur quod voluptatem impedit eligendi culpa.
                         </p>
                     </div>
-                    <div className=' flex justify-center mt-4'>
+                    <div class='flex justify-center mt-4'>
                         <a href="/how-to-pet">
-                            <button
-                                className='bg-blue-1000 text-white rounded p-3 w-[150px] text-lg font-semibold'>
+                            <button class='bg-blue-1000 text-white rounded p-3 w-[150px] text-base md:text-lg font-semibold'>
                                 Read More
                             </button>
                         </a>
                     </div>
                 </div>
             </div>
+
             <div className='h-[100px]'>
             </div>
             <Footer />

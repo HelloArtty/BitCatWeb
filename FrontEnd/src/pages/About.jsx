@@ -4,9 +4,9 @@ import "../css/About.css";
 const About = () => {
     return (
         <>
-            <div className="section1">
+            <div className="section1 bg-cat2 bg-cover bg-center">
                 <div className="content">
-                    <h1 className="text-6xl font-bold">About Us</h1>
+                <h1 class="text-7xl md:text-9xl text-slate-1000 font-bold text-center">About Us</h1>
                 </div>
             </div>
             <div className="row-home">
@@ -28,7 +28,7 @@ const About = () => {
             </div>
             <div className="section3">
                 <div className="content">
-                    <h1 className="Head">Members</h1>
+                    <h1 className="Head font-semibold">Members</h1>
                 </div>
                 <div className="box">
                     <div className="card">
