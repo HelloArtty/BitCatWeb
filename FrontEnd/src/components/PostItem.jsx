@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function PostItem({ post }) {
     return (
-        <div className='bg-white shadow-md hover:shadow-lg overflow-hidden rounded-lg w-full sm:w-[300px]'>
+        <div className='bg-white shadow-md hover:shadow-lg overflow-hidden rounded-sm w-full sm:w-[300px]'>
             <Link to={`/post/${post._id}`}>
                 <div className='relative'>
                     <img
@@ -14,7 +14,7 @@ export default function PostItem({ post }) {
                         className=' h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'
                     />
                 </div>
-                <div className='p-3 flex flex-col gap-2 w-full'>
+                <div className='p-3 flex flex-col gap-2 w-full ]'>
                     <p className='text-lg font-semibold text-slate-1001 truncate'>{post.name}</p>
                     <div className='flex gap-1 items-center'>
                         <PiCatDuotone className='h-5 w-5' /> <p className='text-sm text-slate-1002 truncate'>: {post.catBreed}</p>

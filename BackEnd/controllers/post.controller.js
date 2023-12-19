@@ -83,15 +83,15 @@ export const getPosts = async (req, res, next) => {
 
         const posts = await Post.find({
             name: { $regex: searchTerm, $options: 'i' },
-            $or: [
+            $and: [
                 { sex: sex },
                 { catBreed: catBreed }
             ]
-            , $or: [
+            , $and: [
                 { sex: sex },
                 { catBreed: { $regex: catBreed, $options: 'i' } }
             ]
-            ,$or: [
+            ,$and: [
                 { sex: sex || { $exists: true } },
                 { catBreed: catBreed || { $exists: true } }
             ]

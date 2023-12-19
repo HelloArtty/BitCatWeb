@@ -25,61 +25,64 @@ export default function Home() {
         fetchOrderPosts();
     }, []);
     return (
-        <div>
-            <div className='bg-slate-200 '>
+        <div className=''>
+            <div className='bg-cat3 bg-cover bg-center'>
                 <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-                    <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
+                    <h1 className='text-slate-50 font-bold text-3xl lg:text-6xl'>
                         BitCat
                         <br />
                         I want to sleep.
                     </h1>
-                    <div className='text-gray-400 text-xs sm:text-sm'>
+                    <div className='text-gray-200 text-xs sm:text-sm'>
                         BitCat is a place where you can find all the information about cats.
                     </div>
                     <Link to="/cats"
-                        className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
+                        className='text-xs sm:text-sm text-blue-200 font-bold hover:underline'>
                         See all cats
                     </Link>
                 </div>
             </div>
-            <div className="row-home">
-                <div className="imgWrapper">
-                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D" alt="" />
-                </div>
-                <div className="contentWrapper">
-                    <div className="content-img">
-                        <h2>
-                            About Us
-                        </h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia debitis deserunt, eum nobis ullam nesciunt adipisci dicta, magnam expedita exercitationem blanditiis vitae, corporis accusantium nihil repellendus laborum nostrum mollitia quidem!
-                            Veritatis voluptatibus iusto et, culpa ab odio inventore consequuntur placeat natus, ipsa obcaecati quae sapiente consequatur temporibus illum? Deserunt unde provident omnis aliquam ea. Deleniti expedita beatae ab quasi nobis.</p>
-                        <a href="/About">Read More</a>
+            <div className='bg-[rgb(255,255,255)]'>
+                <div className="row-home ">
+                    <div className="imgWrapper">
+                        <img src="/src/assets/cat7.png" alt="" />
+                    </div>
+                    <div className="contentWrapper">
+                        <div className="content-img">
+                            <h2>
+                                About Us
+                            </h2>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia debitis deserunt, eum nobis ullam nesciunt adipisci dicta, magnam expedita exercitationem blanditiis vitae, corporis accusantium nihil repellendus laborum nostrum mollitia quidem!
+                                Veritatis voluptatibus iusto et, culpa ab odio inventore consequuntur placeat natus, ipsa obcaecati quae sapiente consequatur temporibus illum? Deserunt unde provident omnis aliquam ea. Deleniti expedita beatae ab quasi nobis.</p>
+                            <a href="/About">Read More</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className='max-w-6xl mx-auto p-2 flex flex-col gap-8 my-10'>
-                {orderPosts && orderPosts.length > 0 && (
-                    <div className=''>
-                        <div className='my-3'>
-                            <h2 className='text-3xl font-bold text-slate-600 mb-10'>Lastest Cats</h2>
-                            {/* <Link className='text-sm text-blue-800 hover:underline' to={'/search?order=desc'}>Show more</Link> */}
+            <div className='bg-[rgb(255,255,255)]'>
+                <div className='max-w-6xl mx-auto p-2 flex flex-col gap-8 my-10'>
+                    {orderPosts && orderPosts.length > 0 && (
+                        <div className='justify-center flex flex-col mx-auto '>
+                            <div className='my-3'>
+                                <h2 className='text-3xl font-bold text-slate-600 mb-10'>Lastest Cats</h2>
+                            </div>
+                            <div className='flex flex-wrap gap-5'>
+                                {orderPosts.map((post) => (
+                                    <PostItem post={post} key={post._id} />
+                                ))}
+                            </div>
+                            <div className='flex justify-center m-8'>
+                                <a
+                                    href='/cats' to={'/search?order=desc'}
+                                    className='bg-blue-1000 text-center text-white rounded p-3 text-lg  w-[150px]  font-semibold '>
+                                    View All
+                                </a>
+                            </div>
                         </div>
-                        <div className='flex flex-wrap gap-4'>
-                            {orderPosts.map((post) => (
-                                <PostItem post={post} key={post._id} />
-                            ))}
-                        </div>
-                        <div className='flex justify-center m-8'>
-                            <a
-                                href='/cats' to={'/search?order=desc'}
-                                className='bg-blue-1000 text-center text-white rounded p-3 text-lg  w-[150px]  font-semibold '>
-                                View All
-                            </a>
-                        </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
-            <div class='h-[700px] bg-slate-200 flex flex-col justify-center p-4'>
+            <div class='h-[700px] bg-slate-100 flex flex-col justify-center p-4'>
                 <div class='mt-8'>
                     <h1 class='text-center text-5xl md:text-9xl font-bold'>
                         How To Pet
@@ -98,8 +101,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
-            <div className='h-[100px]'>
+            <div className='h-[30px]'>
             </div>
             <Footer />
         </div>

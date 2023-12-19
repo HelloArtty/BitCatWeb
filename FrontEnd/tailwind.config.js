@@ -13,6 +13,8 @@ export default {
       backgroundImage: {
         'cat': "url('/src/assets/cat4.png')",
         'cat2': "url('/src/assets/cat2.png')",
+        'cat3': "url('/src/assets/cat5.png')",
+        'cat4': "url('/src/assets/cat8.png')",
       },
       colors: {
         blue: {

@@ -13,21 +13,21 @@ const HowToPet = () => {
             <div className="blog">
                 <div className="item">
                     <h2>Foods</h2>
-                    <img src="https://cats.com/wp-content/uploads/2022/03/cat-eating-cat-food-compressed.jpg" alt="" />
+                    <img src="https://www.shutterstock.com/shutterstock/videos/1067674382/thumb/1.jpg" alt="" />
                     <div className="text">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, lacus lacinia aliquet consequat, neque dui ultricies tortor, non rhoncus nisi augue eget nisl. Nulla congue sodales lectus non pulvinar. Donec lacinia sapien ut velit imperdiet, vel sollicitudin quam mattis. Fusce blandit in nisl mattis pulvinar. Pellentesque id nisi non eros condimentum mollis. Sed at dui eleifend, convallis velit et, venenatis orci. Suspendisse blandit condimentum erat eu tempor. Ut iaculis eros nisl, vel viverra felis condimentum in. In sed venenatis ante, ut tempor ipsum. Suspendisse tempor bibendum euismod. Donec bibendum scelerisque felis, eget efficitur massa venenatis ac.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, lacus lacinia aliquet consequat, neque dui ultricies tortor, non rhoncus nisi augue eget nisl. Nulla congue sodales lectus non pulvinar. Donec lacinia sapien ut velit imperdiet, vel sollicitudin quam mattis. Fusce blandit in nisl mattis pulvinar. Pellentesque id nisi non eros condimentum mollis. Sed at dui eleifend, convallis velit et, venenatis orci. Suspendisse blandit condimentum erat eu tempor.</p>
                     </div>
                 </div>
                 <div className="item">
                     <h2>Toys</h2>
-                    <img src="https://cats.com/wp-content/uploads/2022/03/cat-eating-cat-food-compressed.jpg" alt="" />
+                    <img src="https://images2.alphacoders.com/716/thumb-1920-71660.jpg" alt="" />
                     <div className="text">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, lacus lacinia aliquet consequat, neque dui ultricies tortor, non rhoncus nisi augue eget nisl. Nulla congue sodales lectus non pulvinar. Donec lacinia sapien ut velit imperdiet, vel sollicitudin quam mattis. Fusce blandit in nisl mattis pulvinar. Pellentesque id nisi non eros condimentum mollis. Sed at dui eleifend, convallis velit et, venenatis orci. Suspendisse blandit condimentum erat eu tempor. Ut iaculis eros nisl, vel viverra felis condimentum in. In sed venenatis ante, ut tempor ipsum. Suspendisse tempor bibendum euismod. Donec bibendum scelerisque felis, eget efficitur massa venenatis ac.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, lacus lacinia aliquet consequat, neque dui ultricies tortor, non rhoncus nisi augue eget nisl. Nulla congue sodales lectus non pulvinar. Donec lacinia sapien ut velit imperdiet, vel sollicitudin quam mattis. Fusce blandit in nisl mattis pulvinar. Pellentesque id nisi non eros condimentum mollis. Sed at dui eleifend, convallis velit et, venenatis orci. Suspendisse blandit condimentum erat eu tempor.</p>
                     </div>
                 </div>
                 <div className="item">
                     <h2>Cat Toilet</h2>
-                    <img src="https://cats.com/wp-content/uploads/2022/03/cat-eating-cat-food-compressed.jpg" alt="" />
+                    <img src="https://c4.wallpaperflare.com/wallpaper/998/124/21/kittens-toilet-play-wallpaper-preview.jpg" alt="" />
                     <div className="text">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, lacus lacinia aliquet consequat, neque dui ultricies tortor, non rhoncus nisi augue eget nisl. Nulla congue sodales lectus non pulvinar. Donec lacinia sapien ut velit imperdiet, vel sollicitudin quam mattis. Fusce blandit in nisl mattis pulvinar. Pellentesque id nisi non eros condimentum mollis. Sed at dui eleifend, convallis velit et, venenatis orci. Suspendisse blandit condimentum erat eu tempor. Ut iaculis eros nisl, vel viverra felis condimentum in. In sed venenatis ante, ut tempor ipsum. Suspendisse tempor bibendum euismod. Donec bibendum scelerisque felis, eget efficitur massa venenatis ac.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse consequat, lacus lacinia aliquet consequat, neque dui ultricies tortor, non rhoncus nisi augue eget nisl. Nulla congue sodales lectus non pulvinar. Donec lacinia sapien ut velit imperdiet, vel sollicitudin quam mattis. Fusce blandit in nisl mattis pulvinar. Pellentesque id nisi non eros condimentum mollis. Sed at dui eleifend, convallis velit et, venenatis orci. Suspendisse blandit condimentum erat eu tempor.</p>
                     </div>

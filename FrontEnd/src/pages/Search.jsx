@@ -32,7 +32,7 @@ export default function Search() {
             orderFromUrl
         ) {
             setSidebardata({
-                searchTrem: searchTermFromUrl || '',
+                searchTerm: searchTermFromUrl || '',
                 catBreed: catBreedFromUrl || '',
                 sex: sexFromUrl || '',
                 sort: sortFromUrl || 'created_at',
@@ -62,7 +62,7 @@ export default function Search() {
         if (e.target.id === 'searchTerm') {
             setSidebardata({
                 ...sidebardata,
-                searchTrem: e.target.value
+                searchTerm: e.target.value
             })
         }
         if (e.target.id === 'catBreed') {
@@ -88,7 +88,7 @@ export default function Search() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const urlParams = new URLSearchParams()
-        urlParams.append('searchTerm', sidebardata.searchTrem)
+        urlParams.append('searchTerm', sidebardata.searchTerm)
         urlParams.append('catBreed', sidebardata.catBreed)
         urlParams.append('sex', sidebardata.sex)
         urlParams.append('sort', sidebardata.sort)
@@ -117,7 +117,7 @@ export default function Search() {
                     <div className='flex items-center gap-2'>
                         <label
                             className='whitespace-nowrap font-semibold'>
-                            Search Term:
+                            Search:
                         </label>
                         <input
                             type='text'
@@ -125,7 +125,7 @@ export default function Search() {
                             placeholder='Search...'
                             className='border-blue-1000 bg-slate-1000 border ml-2 rounded-lg p-3 '
                             onChange={handleChange}
-                            value={sidebardata.searchTrem}
+                            value={sidebardata.searchTerm}
                         />
                     </div>
                     <div className='flex gap-2 flex-wrap items-center'>
