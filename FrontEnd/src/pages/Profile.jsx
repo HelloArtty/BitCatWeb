@@ -33,6 +33,8 @@ export default function Profile() {
     const [showPostError, setShowPostError] = useState(false);
     const [userPost, setUserPost] = useState([]);
     const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [addContactSuccess, setAddContactSuccess] = useState(false);
+    const [addLocationSuccess, setLocationSuccess] = useState(false);
     const [formDataContact, setFormDataContact] = useState({
         phone: '',
     });
@@ -114,7 +116,7 @@ export default function Profile() {
                 console.log(data.message);
                 return;
             }
-
+            setAddContactSuccess(true);
         } catch (error) {
             console.log(error.message);
         }
@@ -139,7 +141,7 @@ export default function Profile() {
                 console.log(data.message);
                 return;
             }
-            // setLocationSuccess(true);
+            setLocationSuccess(true);
         } catch (error) {
             console.log(error.message);
         }
@@ -339,6 +341,8 @@ export default function Profile() {
             <p className='text-red-700 mt-5'>{error ? error : ''}</p>
             <p className='text-green-700 mt-5'>{updateSuccess ? 'Profile Updated Successfully!' : ''}</p>
             <p className='text-red-700 mt-5'>{showPostError ? 'Error Showing Post!' : ''}</p>
+            <p className='text-green-700 mt-5'>{addContactSuccess ? 'Add Contact Successfully!' : ''} </p>
+            <p className='text-green-700 mt-5'>{addLocationSuccess ? 'Add Location Successfully!' : ''} </p>
             {userPost &&
                 userPost.length > 0 &&
                 <div className='flex flex-col gap-4'>
