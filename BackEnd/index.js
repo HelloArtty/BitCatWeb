@@ -2,6 +2,7 @@ import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+import path from 'path';
 import authRouter from './routes/auth.route.js';
 import contactRouter from './routes/contact.route.js';
 import locationRouter from './routes/location.route.js';
@@ -19,6 +20,8 @@ mongoose
         console.log('Error connecting to MongoDB', err);
     });
 
+    const _dirname = path.resolve();
+
 const app = express();
 
 app.use(express.json());
@@ -34,6 +37,13 @@ app.use("/backend/auth", authRouter)
 app.use("/backend/post", postRouter)
 app.use("/backend/contact", contactRouter)
 app.use("/backend/location", locationRouter)
+
+
+app.use(express.static(path.join(_dirname, '/frontend/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(_dirname, 'frontend','dist','index.html'));
+});
 
 app.use((err,req,res,next)=>{
     const statusCode = err.statusCode || 500;
