@@ -6,7 +6,7 @@ const About = () => {
         <>
             <div className="section1 bg-cat2 bg-cover bg-center">
                 <div className="content">
-                <h1 class="text-7xl md:text-9xl text-slate-1000 font-bold text-center">About Us</h1>
+                    <h1 class="text-7xl md:text-9xl text-slate-1000 font-bold text-center">About Us</h1>
                 </div>
             </div>
             <div className="row-home">
@@ -18,11 +18,15 @@ const About = () => {
                         <h2>
                             About Us
                         </h2>
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid asperiores itaque sint minima ullam adipisci molestias, iste at facere pariatur? Labore maxime quae consequuntur distinctio enim possimus perspiciatis suscipit vero!
-                            Ratione deleniti sed, excepturi iusto provident veniam reiciendis animi. Veritatis, perferendis porro. Delectus consequatur, neque animi repudiandae quis, beatae perferendis mollitia labore culpa esse hic expedita ducimus. Asperiores, eum sequi?
-                            Voluptatibus amet repellat dolores provident quo quam facilis molestiae reiciendis. Odio doloremque repellat in, quos eveniet minus aperiam neque modi odit ratione. Deleniti eveniet laborum accusantium tempora natus velit saepe!
-                            Alias magnam praesentium eaque eius facere, est nesciunt nulla consequatur explicabo officia repellat eligendi cumque ducimus possimus fuga nisi porro perspiciatis vero reprehenderit nihil aut aspernatur, quam minima omnis. Necessitatibus!
-                            Consequuntur beatae minima, sed expedita minus at aut. Debitis perspiciatis fugiat id voluptatem similique explicabo reiciendis voluptatibus nesciunt nisi! Exercitationem, hic! Distinctio quis fuga dolor, quas delectus qui molestiae sed!</p>
+                        <p> BitCat was founded with a simple yet profound goal – to be the bridge that brings together cats in search of a forever home and individuals seeking the joy and companionship that only a cat can provide.
+                            As avid cat lovers ourselves, we understand the unique bond that forms between humans and felines, and we are committed to fostering these connections.
+                        </p>
+                        <p>
+                            Our vision is to create a world where every cat has a warm and loving home.
+                            We believe that every cat deserves a chance to experience the comfort and security of a forever family.
+                            By facilitating adoptions and providing a platform for cat enthusiasts,
+                            we hope to make a positive impact on the lives of both cats and their new human companions.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -33,15 +37,15 @@ const About = () => {
                 <div className="box">
                     <div className="card">
                         <div className="member">
-                            <img src="https://media.discordapp.net/attachments/806864849488707587/1186093924109000804/IMG_3646.jpg?ex=6591ff0c&is=657f8a0c&hm=8d03a95ac03cffe2e71b9edddf3075b70021ae3e6c76668ad9a53e6cdb5ea2d6&=&format=webp&width=702&height=702" alt="" />
-                            <p>Teekamol Queen</p>
+                            <img src="https://media.discordapp.net/attachments/988168701989765160/1186637376643158026/410528324_1335352380432016_3246775920249158811_n.png?ex=6593f92d&is=6581842d&hm=7c1bfb161d01fa25acb4f3f4147e7663ab87a934e3354c85c98334082f0f4f7b&=&format=webp&quality=lossless&width=702&height=702" alt="" />
+                            <p className="font-semibold">Teekamol Chaiwongwutthikul</p>
                             <p>65090500409</p>
                         </div>
                     </div>
                     <div className="card">
                         <div className="member">
-                            <img src="https://media.discordapp.net/attachments/806864849488707587/1186093924352266260/IMG_3652.jpg?ex=6591ff0c&is=657f8a0c&hm=d3e057f1e9d20560baf63ca3af487465adfe34a4dc0cd5f3be812d43651be664&=&format=webp&width=561&height=702" alt="" />
-                            <p>Chaithawat Salkang</p>
+                            <img src="https://media.discordapp.net/attachments/806864849488707587/1186639416509341806/3B4B0951-A9E0-451E-ABF5-ED2B091C557D.jpg?ex=6593fb13&is=65818613&hm=7b393327cab1ca693d62e44585197b7e8fbd725e70d1df5c6d57facd99822674&=&format=webp" alt="" />
+                            <p className="font-semibold">Chaithawat Saklang</p>
                             <p>65090500432</p>
                         </div>
                     </div>

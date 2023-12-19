@@ -52,8 +52,7 @@ export default function Home() {
                             <h2>
                                 About Us
                             </h2>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia debitis deserunt, eum nobis ullam nesciunt adipisci dicta, magnam expedita exercitationem blanditiis vitae, corporis accusantium nihil repellendus laborum nostrum mollitia quidem!
-                                Veritatis voluptatibus iusto et, culpa ab odio inventore consequuntur placeat natus, ipsa obcaecati quae sapiente consequatur temporibus illum? Deserunt unde provident omnis aliquam ea. Deleniti expedita beatae ab quasi nobis.</p>
+                            <p>BitCat was founded with a simple yet profound goal – to be the bridge that brings together cats in search of a forever home and individuals seeking the joy and companionship that only a cat can provide. As avid cat lovers ourselves, we understand the unique bond that forms between humans and felines, and we are committed to fostering these connections.</p>
                             <a href="/About">Read More</a>
                         </div>
                     </div>
@@ -89,7 +88,8 @@ export default function Home() {
                     </h1>
                     <div class='flex justify-center'>
                         <p class='text-base md:text-xl m-5 w-full md:w-1/2 text-center'>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis nulla similique sit mollitia, nihil harum vel quis et exercitationem eligendi quas! Incidunt ex illo consequatur quod voluptatem impedit eligendi culpa.
+                            Welcome to the wonderful world of cat ownership! Bringing a cat into your home is a joyous and rewarding experience.
+                            To ensure a happy and healthy life for your new feline friend, here's a beginner's guide to basic cat care.
                         </p>
                     </div>
                     <div class='flex justify-center mt-4'>
