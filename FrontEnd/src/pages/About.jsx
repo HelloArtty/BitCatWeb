@@ -38,7 +38,7 @@ const About = () => {
                     <div className="card">
                         <div className="member">
                             <img src="https://media.discordapp.net/attachments/988168701989765160/1186637376643158026/410528324_1335352380432016_3246775920249158811_n.png?ex=6593f92d&is=6581842d&hm=7c1bfb161d01fa25acb4f3f4147e7663ab87a934e3354c85c98334082f0f4f7b&=&format=webp&quality=lossless&width=702&height=702" alt="" />
-                            <p className="font-semibold">Teekamol Chaiwongwutthikul</p>
+                            <p className="font-semibold">Teekamon Chaiwongwutthikul</p>
                             <p>65090500409</p>
                         </div>
                     </div>
