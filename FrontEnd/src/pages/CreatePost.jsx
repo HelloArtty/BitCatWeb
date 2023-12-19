@@ -20,6 +20,7 @@ export default function CreatePost() {
         age: '',
         sex: '',
         location:'',
+        contact:'',
         description: '',
     });
     const [imageUploadError, setImageUploadError] = useState(false);
@@ -200,6 +201,15 @@ export default function CreatePost() {
                         required
                         onChange={handleChanges}
                         value={formData.location}
+                    />
+                    <input
+                        type="text"
+                        placeholder="Contact"
+                        className=" border-blue-1000 bg-slate-1000 border p-3 rounded-lg"
+                        id='contact'
+                        required
+                        onChange={handleChanges}
+                        value={formData.contact}
                     />
                     <textarea
                         type="text"
